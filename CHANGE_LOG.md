@@ -1,4 +1,9 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-0513: 1.0.1 (cybutek) for KSP 0.23.5
+	+ 1.0.1
+		- Added minimum and maximum KSP version support.
+		- Updates will only be shown if the remote version is compatible with the
+	+ installed version of KSP.
 * 2014-0512: 1.0 (cybutek) for KSP 0.23.5
 	+ No changelog provided
