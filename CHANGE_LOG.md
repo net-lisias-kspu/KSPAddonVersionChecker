@@ -1,5 +1,12 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-0806: 1.1 (cybutek) for KSP 0.24.2
+	+ Complete re-write of the core code.
+	+ Added: Replaced LitJson with embeded MiniJson for compatibility and to reduce dependancies.
+	+ Added: Better utilisation of multi-threading.
+	+ Added: Check progress window which will show whilst processing.
+	+ Changed: Remote version file fetching now uses WebRequest instead of Unity's archaic WWW.
+	+ Fixed: Version formatting bug where it did not recognise build numbers in certain cases.
 * 2014-0726: 1.0.4 (cybutek) for KSP 0.24.1
 	+ Added: Url check to fix problems caused by non-raw github .version files.
 	+ Added: Logging system now also saves into the standard ksp log file.
