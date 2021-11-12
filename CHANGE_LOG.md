@@ -1,5 +1,7 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-0817: 1.1.3.1 (cybutek) for KSP 0.24.2
+	+ Fixed: Game breaking bug.
 * 2014-0816: 1.1.3 (cybutek) for KSP 0.24.2
 	+ Added: GitHub latest release checking.
 	+ Added: Version file reading is now case insensitive.
