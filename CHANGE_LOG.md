@@ -1,5 +1,12 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-0807: 1.1.1 (cybutek) for KSP 0.24.2
+	+ Added: Blanket exception handling and logging.
+	+ Added: Logger will flush on destruction and GC finaliser.
+	+ Added: Check to remove '/tree/' from github urls.
+	+ Changed: Remote checking back to WWW because WebRequest in Mono does not support TLS/SSL.
+	+ Changed: Version file search is now limited to just the GameData directory.
+	+ Fixed: Possible null refs caused by invalid remote urls.
 * 2014-0806: 1.1 (cybutek) for KSP 0.24.2
 	+ Complete re-write of the core code.
 	+ Added: Replaced LitJson with embeded MiniJson for compatibility and to reduce dependancies.
