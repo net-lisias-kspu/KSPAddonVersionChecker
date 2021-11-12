@@ -1,5 +1,13 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2016-0422: 1.1.6.1 (cybutek) for KSP 1.1
+	+ Corrected missing comma in the .version file.
+	+ 1.1.6.1
+	+ Build on KSP 1.1.0.1230
+	+ 1.1.6.0
+	+ Built on KSP Experimental 1.1.0.1171
+	+ Added: 10-second timeout on invalid URLs.
+	+ Added: DevHelper GUI avoidence.
 * 2014-1017: 1.1.5.0 (cybutek) for KSP ['1.0.4', '1.0.3', '1.0.2', '1.0.0', '0.90', '0.25']
 	+ Added: Remote version files take priority when local/remote add-on versions
 	+ are the same.
