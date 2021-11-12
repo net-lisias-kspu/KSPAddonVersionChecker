@@ -1,23 +1,29 @@
-﻿// Copyright (C) 2014 CYBUTEK
-//
-// This program is free software: you can redistribute it and/or modify it under the terms of the GNU
-// General Public License as published by the Free Software Foundation, either version 3 of the
-// License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-// General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License along with this program. If not,
-// see <http://www.gnu.org/licenses/>.
+﻿/*
+	This file is part of KSP AddOn Version Checker /L Unleashed
+		© 2021 Lisias T : http://lisias.net <support@lisias.net>
+		© 2014-2016 Cybutek
 
+	KSP AddOn Version Checker /L Unleashed is licensed as follows:
+		* GPL 3.0 : https://www.gnu.org/licenses/gpl-3.0.txt
+
+	KSP AddOn Version Checkere /L Unleashed is distributed in the hope that
+	it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+	warranty of	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+	You should have received a copy of the GNU General Public License 3.0 along
+	with KSP AddOn Version Checker /L Unleashed.
+	If not, see <https://www.gnu.org/licenses/>.
+
+*/
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
+using System.Net;
+//using System.Threading;
 
-using UnityEngine;
+using System.IO;
+
 
 namespace MiniAVC
 {
@@ -30,6 +36,8 @@ namespace MiniAVC
         private VersionInfo kspVersion;
         private VersionInfo kspVersionMax;
         private VersionInfo kspVersionMin;
+        private List<VersionInfo> kspExcludeVersions = null;
+        private List<VersionInfo> kspIncludeVersions = null;
 
         static AddonInfo()
         {
@@ -71,7 +79,20 @@ namespace MiniAVC
 
         public bool IsCompatible
         {
-            get { return IsCompatibleKspVersion || ((kspVersionMin != null || kspVersionMax != null) && IsCompatibleKspVersionMin && IsCompatibleKspVersionMax); }
+            get
+            {
+                if (kspIncludeVersions != null && this.IsKspIncludedVersion)
+                    return true;
+                bool b = (this.IsCompatibleKspVersion && this.kspVersionMin == null && this.kspVersionMax == null)
+                 ||
+                 ((this.kspVersionMin != null || this.kspVersionMax != null) && this.IsCompatibleKspVersionMin && this.IsCompatibleKspVersionMax);
+                if (b)
+                {
+                    if (kspExcludeVersions != null && this.IsKspExcludedVersion)
+                        b = false;
+                }
+                return b;
+            }
         }
 
         public bool IsCompatibleGitHubVersion
@@ -108,6 +129,27 @@ namespace MiniAVC
         {
             get { return (kspVersionMin ?? VersionInfo.MinValue); }
         }
+        public bool IsKspExcludedVersion
+        {
+            get
+            {
+                if (this.kspExcludeVersions == null)
+                    return false;
+                bool b = this.kspExcludeVersions.Contains(actualKspVersion);
+                return b;
+            }
+        }
+        public bool IsKspIncludedVersion
+        {
+            get
+            {
+                if (this.kspIncludeVersions == null)
+                    return false;
+                bool b = this.kspIncludeVersions.Contains(actualKspVersion);
+                return b;
+            }
+        }
+        public bool KspExcludeVersionIsNull { get { return this.kspExcludeVersions == null; } }
 
         public string Name { get; private set; }
 
@@ -127,7 +169,7 @@ namespace MiniAVC
 
         public override string ToString()
         {
-            return path +
+            string str = path +
                    "\n\tNAME: " + (String.IsNullOrEmpty(Name) ? "NULL (required)" : Name) +
                    "\n\tURL: " + (String.IsNullOrEmpty(Url) ? "NULL" : Url) +
                    "\n\tDOWNLOAD: " + (String.IsNullOrEmpty(Download) ? "NULL" : Download) +
@@ -135,11 +177,21 @@ namespace MiniAVC
                    "\n\tVERSION: " + (Version != null ? Version.ToString() : "NULL (required)") +
                    "\n\tKSP_VERSION: " + KspVersion +
                    "\n\tKSP_VERSION_MIN: " + (kspVersionMin != null ? kspVersionMin.ToString() : "NULL") +
-                   "\n\tKSP_VERSION_MAX: " + (kspVersionMax != null ? kspVersionMax.ToString() : "NULL") +
+                   "\n\tKSP_VERSION_MAX: " + (kspVersionMax != null ? kspVersionMax.ToString() : "NULL");
+            if (kspExcludeVersions != null)
+            {
+                str += "\n\tKSP_VERSION_EXCLUDE:";
+                foreach (var s in kspExcludeVersions)
+                {
+                    str += "\n\t\t" + s;
+                }
+            }
+            str +=
                    "\n\tCompatibleKspVersion: " + IsCompatibleKspVersion +
                    "\n\tCompatibleKspVersionMin: " + IsCompatibleKspVersionMin +
                    "\n\tCompatibleKspVersionMax: " + IsCompatibleKspVersionMax +
                    "\n\tCompatibleGitHubVersion: " + IsCompatibleGitHubVersion;
+            return str;
         }
 
         private static string FormatCompatibleUrl(string url)
@@ -236,6 +288,15 @@ namespace MiniAVC
                     case "KSP_VERSION_MAX":
                         kspVersionMax = GetVersion(data[key]);
                         break;
+                    case "KSP_VERSION_EXCLUDE":
+                        kspExcludeVersions = new List<VersionInfo>();
+                        List<System.Object> ExcludeList = (List<System.Object>)data[key];
+                        foreach (System.Object el in ExcludeList)
+                        {
+                            var s = GetVersion(el);
+                            kspExcludeVersions.Add(s);
+                        }
+                        break;
                 }
             }
         }
@@ -264,9 +325,47 @@ namespace MiniAVC
 
             public void FetchRemoteData()
             {
+                HttpWebResponse response = null;
                 try
                 {
-                    using (var www = new WWW("https://api.github.com/repos/" + Username + "/" + Repository + "/releases"))
+
+                    string uri = "https://api.github.com/repos/" + this.Username + "/" + this.Repository + "/releases";
+                    HttpWebRequest request = HttpWebRequest.Create(Uri.EscapeUriString(uri)) as HttpWebRequest;
+
+                    request.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
+                    request.Accept = "text/html,application/xhtml+xm…plication/xml; q=0.9,*/*;q=0.8";
+                    request.UserAgent = "KSP-AVC";
+                    request.Timeout = 10000;  // milliseconds
+                    request.Method = WebRequestMethods.Http.Get;
+                    response = request.GetResponse() as HttpWebResponse;
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        Stream data = response.GetResponseStream();
+                        string html = String.Empty;
+                        using (StreamReader sr = new StreamReader(data))
+                        {
+                            html = sr.ReadToEnd();
+                        }
+                        response.Close();
+                        ParseGitHubJson(html);
+                    }
+                }
+                catch (WebException ex)
+                {
+                    Logger.Log("Exception fetching data from Github: " + "https://api.github.com/repos/" + this.Username + "/" + this.Repository + "/releases");
+                    if (ex.Status == WebExceptionStatus.ProtocolError)
+                    {
+                        Logger.Log("Status Code : " + ((int)((HttpWebResponse)ex.Response).StatusCode).ToString() + " - " + ((HttpWebResponse)ex.Response).StatusCode.ToString());
+                        Logger.Log("Status Description : " + ((HttpWebResponse)ex.Response).StatusDescription);
+                    }
+                    else
+                        Logger.Exception(ex);
+                }
+
+#if false
+                try
+                {
+                    using (UnityWebRequest www = UnityWebRequest.Get("https://api.github.com/repos/" + Username + "/" + Repository + "/releases"))
                     {
                         while (!www.isDone)
                         {
@@ -274,7 +373,7 @@ namespace MiniAVC
                         }
                         if (www.error == null)
                         {
-                            ParseGitHubJson(www.text);
+                            ParseGitHubJson(www.url);
                         }
                     }
                 }
@@ -282,6 +381,7 @@ namespace MiniAVC
                 {
                     Logger.Exception(ex);
                 }
+#endif
             }
 
             public override string ToString()
