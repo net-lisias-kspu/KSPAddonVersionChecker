@@ -1,5 +1,18 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-1017: 1.1.5.0 (cybutek) for KSP ['1.0.4', '1.0.3', '1.0.2', '1.0.0', '0.90', '0.25']
+	+ Added: Remote version files take priority when local/remote add-on versions
+	+ are the same.
+	+ Added: 'Any' type versions are now fully supported.
+	+ Added: Wildcards for version fields with '-1'.
+	+ Added: New informational toolbar to the top left of the screen, replacing the
+	+ drop down button.
+	+ Added: Toolbar display's the number of installed add-ons that are KSP-AVC
+	+ ready.
+	+ Added: Toolbar has a dynamic list that will allow scrolling when taller than
+	+ half the game screen height.
+	+ Added: Toolbar has a 'Copy to Clipboard' button that will copy the list and
+	+ environment information (KSP/Unity/OS) to the clipboard.
 * 2014-1007: 1.1.4.3 (cybutek) for KSP 0.25
 	+ Updated for KSP v0.25.0
 	+ Fixed: Typo in AddonInfo.ToString()
