@@ -1,5 +1,10 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-1007: 1.1.4.3 (cybutek) for KSP 0.25
+	+ Updated for KSP v0.25.0
+	+ Fixed: Typo in AddonInfo.ToString()
+	+ Fixed: Bug with empty version files which would cause the top drop down to not
+	+ work.
 * 2014-0831: 1.1.4.2 (cybutek) for KSP 0.24.2
 	+ Changed: Done a lot of under the hood refactoring.
 	+ Fixed: Bug which would freeze the computer when checking many add-ons.
