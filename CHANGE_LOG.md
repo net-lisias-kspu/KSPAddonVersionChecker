@@ -1,5 +1,9 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-0816: 1.1.3 (cybutek) for KSP 0.24.2
+	+ Added: GitHub latest release checking.
+	+ Added: Version file reading is now case insensitive.
+	+ Fixed: Bug in version equality checking. (Now using a custom VersionInfo object).
 * 2014-0809: 1.1.2 (cybutek) for KSP 0.24.2
 	+ Added: Tooltip when hovering over the download button showing the destination URL.
 	+ Fixed: Certain situations would cause the root directory to be incorrect.
