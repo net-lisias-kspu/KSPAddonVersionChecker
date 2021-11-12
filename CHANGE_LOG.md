@@ -1,5 +1,8 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-0829: 1.1.4.1 (cybutek) for KSP 0.24.2
+	+ Fixed: Log spam.
+	+ Fixed: Checking window staying open after displaying the first run / updated window.
 * 2014-0829: 1.1.4 (cybutek) for KSP 0.24.2
 	+ Added: Drop down action menu support allowing for multiple actions per add-on.
 	+ Added: Change log support, allowing the player to view the add-on's change log.
