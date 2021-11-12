@@ -1,5 +1,9 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-0809: 1.1.2 (cybutek) for KSP 0.24.2
+	+ Added: Tooltip when hovering over the download button showing the destination URL.
+	+ Fixed: Certain situations would cause the root directory to be incorrect.
+	+ Fixed: File not found handling solving the lock whilst on the checking display.
 * 2014-0807: 1.1.1 (cybutek) for KSP 0.24.2
 	+ Added: Blanket exception handling and logging.
 	+ Added: Logger will flush on destruction and GC finaliser.
