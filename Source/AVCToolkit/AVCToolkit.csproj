@@ -12,13 +12,14 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <BaseIntermediateOutputPath>..\..\obj\AVCToolkit</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Output\AVCToolkit\</OutputPath>
+    <OutputPath>..\..\bin\Debug</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +28,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Output\AVCToolkit\</OutputPath>
+    <OutputPath>..\..\bin\Release</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -57,17 +58,11 @@
     </ItemGroup>
   </Target>
   <PropertyGroup>
-    <PostBuildEventDependsOn>
-        $(PostBuildEventDependsOn);
-        PostBuildMacros;
-      </PostBuildEventDependsOn>
-    <PostBuildEvent>del "$(SolutionDir)Release\AVCToolkit\*" /Q
-xcopy "$(SolutionDir)Documents\AVCToolkit\*" "$(SolutionDir)Release\AVCToolkit\Documents\*" /E /Y
-7z.exe a -tzip -mx3 "$(SolutionDir)Release\AVCToolkit\$(ProjectName)-@(VersionNumber).zip" "$(SolutionDir)Output\AVCToolkit"
-7z.exe a -tzip -mx3 "$(SolutionDir)Release\AVCToolkit\$(ProjectName)-@(VersionNumber).zip" "$(SolutionDir)Documents\AVCToolkit\*"</PostBuildEvent>
+    <PostBuildEventDependsOn></PostBuildEventDependsOn>
+    <PostBuildEvent></PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>del "$(TargetDir)*" /Q</PreBuildEvent>
+    <PreBuildEvent></PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
