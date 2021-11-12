@@ -1,5 +1,10 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2016-1013: 1.1.6.2 (cybutek) for KSP ['1.3', '1.2.2', '1.2.1', '1.2']
+	+ Build on KSP 1.2.0.1586
+	+ Fixed: URLs are escaped before being processed.
+	+ Fixed: UI is destroyed upon entering the Space Centre. This mitigates issues
+	+ that may cause the progress window to remain visible indefinitely.
 * 2016-0422: 1.1.6.1 (cybutek) for KSP 1.1
 	+ Corrected missing comma in the .version file.
 	+ 1.1.6.1
