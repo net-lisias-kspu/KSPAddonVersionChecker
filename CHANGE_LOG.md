@@ -1,5 +1,12 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-0829: 1.1.4 (cybutek) for KSP 0.24.2
+	+ Added: Drop down action menu support allowing for multiple actions per add-on.
+	+ Added: Change log support, allowing the player to view the add-on's change log.
+	+ Added: Drop down list showing all KSP-AVC ready add-ons on loading and main menu.
+	+ Changed: Versions will always have the minimum formatting of 'x.x'.
+	+ Fixed: Issue with non-RAW GitHub version file hosting, extending the url formatter.
+	+ Fixed: Bug where it would do a re-check when reloading the database.
 * 2014-0817: 1.1.3.1 (cybutek) for KSP 0.24.2
 	+ Fixed: Game breaking bug.
 * 2014-0816: 1.1.3 (cybutek) for KSP 0.24.2
