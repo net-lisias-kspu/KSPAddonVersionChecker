@@ -1,5 +1,9 @@
 # # KSP Add'On Version Checker /L Unleashed :: Change Log
 
+* 2014-0726: 1.0.4 (cybutek) for KSP 0.24.1
+	+ Added: Url check to fix problems caused by non-raw github .version files.
+	+ Added: Logging system now also saves into the standard ksp log file.
+	+ Changed: Extended logging system now saves with the associated '.dll' file.
 * 2014-0725: 1.0.3 (cybutek) for KSP 0.24.1
 	+ Updated for KSP version 0.24.2.
 	+ Added: Extended logging system that saves to "KSP-AVC.log".
