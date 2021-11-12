@@ -108,12 +108,18 @@ namespace KSP_AVC
 
         public GitHubInfo GitHub { get; private set; }
 
-        public bool IsCompatible
-        {
-            get { return this.IsCompatibleKspVersion || ((this.kspVersionMin != null || this.kspVersionMax != null) && this.IsCompatibleKspVersionMin && this.IsCompatibleKspVersionMax); }
-        }
+		public bool IsCompatible
+		{
+			get
+			{
+				return this.IsCompatibleKspVersion
+					|| this.IsCompatibleKspVersionMin
+					|| this.IsCompatibleKspVersionMax
+					;
+			}
+		}
 
-        public bool IsCompatibleGitHubVersion
+		public bool IsCompatibleGitHubVersion
         {
             get { return this.GitHub == null || this.GitHub.Version == null || this.Version == this.GitHub.Version; }
         }
@@ -123,15 +129,15 @@ namespace KSP_AVC
             get { return Equals(this.KspVersion, actualKspVersion); }
         }
 
-        public bool IsCompatibleKspVersionMax
-        {
-            get { return this.KspVersionMax >= actualKspVersion; }
-        }
+		public bool IsCompatibleKspVersionMax
+		{
+			get { return null != this.KspVersionMax && this.KspVersionMax >= actualKspVersion; }
+		}
 
-        public bool IsCompatibleKspVersionMin
-        {
-            get { return this.KspVersionMin <= actualKspVersion; }
-        }
+		public bool IsCompatibleKspVersionMin
+		{
+			get { return null != this.kspVersionMin && this.KspVersionMin <= actualKspVersion; }
+		}
 
         public string KerbalStuffUrl { get; private set; }
 

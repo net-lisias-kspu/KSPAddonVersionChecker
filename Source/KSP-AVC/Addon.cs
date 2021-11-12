@@ -53,12 +53,21 @@ namespace KSP_AVC
 
         public bool IsRemoteReady { get; private set; }
 
-        public bool IsUpdateAvailable
-        {
-            get { return this.IsProcessingComplete && this.LocalInfo.Version != null && this.RemoteInfo.Version != null && this.RemoteInfo.Version > this.LocalInfo.Version && this.RemoteInfo.IsCompatibleKspVersion && this.RemoteInfo.IsCompatibleGitHubVersion; }
-        }
+		public bool IsUpdateAvailable
+		{
+			get
+			{
+				return
+				  this.IsProcessingComplete
+				  && this.LocalInfo.Version != null
+				  && this.RemoteInfo.Version != null
+				  && this.RemoteInfo.Version > this.LocalInfo.Version
+				  && this.RemoteInfo.IsCompatible
+				  && this.RemoteInfo.IsCompatibleGitHubVersion;
+			}
+		}
 
-        public AddonInfo LocalInfo { get; private set; }
+		public AddonInfo LocalInfo { get; private set; }
 
         public string Name
         {
