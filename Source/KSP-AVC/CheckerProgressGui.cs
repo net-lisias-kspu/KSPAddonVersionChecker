@@ -48,14 +48,14 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
-            Logger.Log("CheckerProgressGui was created.");
+            Log.trace("CheckerProgressGui was created.");
         }
 
         protected void OnDestroy()
         {
-            Logger.Log("CheckerProgressGui was destroyed.");
+            Log.trace("CheckerProgressGui was destroyed.");
         }
 
         protected void OnGUI()
@@ -67,7 +67,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -79,7 +79,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -93,7 +93,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -136,7 +136,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 

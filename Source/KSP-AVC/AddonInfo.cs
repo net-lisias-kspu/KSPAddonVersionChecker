@@ -69,7 +69,7 @@ namespace KSP_AVC
             {
                 if (this.ParseError)
                 {
-                    Logger.Log("Version file contains errors: " + path);
+                    Log.warn("Version file contains errors: {0}", path);
                 }
             }
         }
@@ -416,7 +416,7 @@ namespace KSP_AVC
                 }
                 catch (Exception ex)
                 {
-                    Logger.Exception(ex);
+                    Log.ex(this,ex);
                 }
             }
 

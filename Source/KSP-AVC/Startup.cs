@@ -15,43 +15,27 @@
 	If not, see <https://www.gnu.org/licenses/>.
 
 */
-#region Using Directives
-
-using System;
-using System.IO;
-using System.Reflection;
-
 using UnityEngine;
-
-#endregion
 
 namespace KSP_AVC
 {
-    public static class Utils
-    {
-        #region Fields
-
-        private static readonly string textureDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Textures");
-
-        #endregion
-
-        #region Methods: public
-
-        public static Texture2D GetTexture(string file, int width, int height)
+    [KSPAddon(KSPAddon.Startup.Instantly, true)]
+    internal class Startup : MonoBehaviour
+	{
+        private void Start()
         {
+            Log.force("Version {0}", Version.Text);
+
             try
             {
-                var texture = new Texture2D(width, height, TextureFormat.ARGB32, false);
-                texture.LoadImage(File.ReadAllBytes(Path.Combine(textureDirectory, file)));
-                return texture;
+                //KSPe.Util.Compatibility.Check<Startup>(typeof(Version), typeof(Configuration));
+                KSPe.Util.Installation.Check<Startup>(this.GetType().Namespace, Version.Namespace, Version.Vendor);
             }
-            catch (Exception ex)
+            catch (KSPe.Util.InstallmentException e)
             {
-                Logger.Exception(ex);
-                return null;
+                Log.err(e.ToShortMessage());
+                KSPe.Common.Dialogs.ShowStopperAlertBox.Show(e);
             }
         }
-
-        #endregion
-    }
+	}
 }

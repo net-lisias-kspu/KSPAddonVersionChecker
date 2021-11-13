@@ -54,14 +54,14 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
-            Logger.Log("ChangeLogGui was created.");
+            Log.trace("ChangeLogGui was created.");
         }
 
         protected void OnDestroy()
         {
-            Logger.Log("ChangeLogGui was destroyed.");
+            Log.trace("ChangeLogGui was destroyed.");
         }
 
         protected void OnGUI()
@@ -73,7 +73,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -85,7 +85,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -133,7 +133,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 

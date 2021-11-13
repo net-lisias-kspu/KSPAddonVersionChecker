@@ -52,9 +52,9 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
-            Logger.Log("Starter was created.");
+            Log.trace("Starter was created.");
         }
 
         protected void OnDestroy()
@@ -72,9 +72,9 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
-            Logger.Log("Starter was destroyed.");
+            Log.trace("Starter was destroyed.");
         }
 
         protected void Start()
@@ -92,7 +92,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -120,7 +120,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 

@@ -56,14 +56,14 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
-            Logger.Log("FirstRunGui was created.");
+            Log.trace("FirstRunGui was created.");
         }
 
         protected void OnDestroy()
         {
-            Logger.Log("FirstRunGui was destroyed.");
+            Log.trace("FirstRunGui was destroyed.");
         }
 
         protected void OnGUI()
@@ -75,7 +75,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -89,7 +89,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -145,7 +145,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 

@@ -52,7 +52,7 @@ namespace KSP_AVC.Toolbar
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -65,7 +65,7 @@ namespace KSP_AVC.Toolbar
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -81,7 +81,7 @@ namespace KSP_AVC.Toolbar
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -96,7 +96,7 @@ namespace KSP_AVC.Toolbar
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -208,7 +208,7 @@ namespace KSP_AVC.Toolbar
             {
                 normal =
                 {
-                    background = Utils.GetTexture("OverlayBackground.png", 400, 100)
+                    background = UI.Image.OverlayBackground
                 },
                 border = new RectOffset(3, 3, 20, 3),
                 padding = new RectOffset(10, 10, 23, 5)
@@ -251,7 +251,7 @@ namespace KSP_AVC.Toolbar
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 

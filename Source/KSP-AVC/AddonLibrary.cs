@@ -42,7 +42,7 @@ namespace KSP_AVC
         static AddonLibrary()
         {
             rootPath = GetRootPath();
-            Logger.Log("Checking Root: " + rootPath);
+            Log.detail("Checking Root: {0}", rootPath);
             ThreadPool.QueueUserWorkItem(ProcessAddonPopulation);
         }
 
@@ -98,7 +98,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(typeof(AddonLibrary),ex);
             }
         }
 

@@ -142,13 +142,13 @@ namespace KSP_AVC
                 }
                 else
                 {
-                    Logger.Log("File Not Found: " + path);
+                    Log.err("File Not Found: {0}", path);
                     this.SetHasError();
                 }
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
                 this.SetHasError();
             }
         }
@@ -167,7 +167,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
                 this.SetLocalInfoOnly();
             }
         }
@@ -183,8 +183,7 @@ namespace KSP_AVC
             this.RemoteInfo = this.LocalInfo;
             this.IsRemoteReady = true;
             this.IsProcessingComplete = true;
-            Logger.Log(this.LocalInfo);
-            Logger.Blank();
+            Log.detail("{0}", this.LocalInfo);
         }
 
         private void SetRemoteAvcInfo(WWW www)
@@ -194,16 +193,14 @@ namespace KSP_AVC
 
             if (this.LocalInfo.Version == this.RemoteInfo.Version)
             {
-                Logger.Log("Identical remote version found: Using remote version information only.");
-                Logger.Log(this.RemoteInfo);
-                Logger.Blank();
+                Log.info("Identical remote version found: Using remote version information only.");
+                Log.info("{0}", this.RemoteInfo);
                 this.LocalInfo = this.RemoteInfo;
             }
             else
             {
-                Logger.Log(this.LocalInfo);
-                Logger.Log(this.RemoteInfo + "\n\tUpdateAvailable: " + this.IsUpdateAvailable);
-                Logger.Blank();
+                Log.info("{0}", this.LocalInfo);
+                Log.info("{0}\n\tUpdateAvailable: {1}", this.RemoteInfo, this.IsUpdateAvailable);
             }
 
             this.IsRemoteReady = true;
@@ -216,16 +213,14 @@ namespace KSP_AVC
 
             if (this.LocalInfo.Version == this.RemoteInfo.Version)
             {
-                Logger.Log("Identical remote version found: Using remote version information only.");
-                Logger.Log(this.RemoteInfo);
-                Logger.Blank();
+                Log.info("Identical remote version found: Using remote version information only.");
+                Log.info("{0}", this.RemoteInfo);
                 this.LocalInfo = this.RemoteInfo;
             }
             else
             {
-                Logger.Log(this.LocalInfo);
-                Logger.Log(this.RemoteInfo + "\n\tUpdateAvailable: " + this.IsUpdateAvailable);
-                Logger.Blank();
+                Log.info("{0}", this.LocalInfo);
+                Log.info("{0}\n\tUpdateAvailable: {1}", this.RemoteInfo, this.IsUpdateAvailable);
             }
 
             this.IsRemoteReady = true;

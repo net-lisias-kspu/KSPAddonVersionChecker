@@ -55,14 +55,14 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
-            Logger.Log("ToolTipGui was created.");
+            Log.trace("ToolTipGui was created.");
         }
 
         protected void OnDestroy()
         {
-            Logger.Log("ToolTipGui was destroyed.");
+            Log.trace("ToolTipGui was destroyed.");
         }
 
         protected void OnGUI()
@@ -78,7 +78,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -90,7 +90,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -136,7 +136,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 

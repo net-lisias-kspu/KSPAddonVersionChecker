@@ -38,7 +38,7 @@ namespace KSP_AVC
             this.SetVersion(version);
         }
 
-        public VersionInfo(Version version)
+        public VersionInfo(System.Version version)
         {
             this.SetVersion(version.ToString());
         }
@@ -94,12 +94,12 @@ namespace KSP_AVC
             return v1.CompareTo(v2) >= 0;
         }
 
-        public static implicit operator Version(VersionInfo version)
+        public static implicit operator System.Version(VersionInfo version)
         {
-            return new Version(Convert.ToInt32(version.Major), Convert.ToInt32(version.Minor), Convert.ToInt32(version.Patch), Convert.ToInt32(version.Build));
+            return new System.Version(Convert.ToInt32(version.Major), Convert.ToInt32(version.Minor), Convert.ToInt32(version.Patch), Convert.ToInt32(version.Build));
         }
 
-        public static implicit operator VersionInfo(Version version)
+        public static implicit operator VersionInfo(System.Version version)
         {
             return new VersionInfo(version.Major, version.Minor, version.Build, version.Revision);
         }

@@ -113,7 +113,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(typeof(Json),ex);
                 return null;
             }
         }

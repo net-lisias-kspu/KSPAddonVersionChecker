@@ -79,7 +79,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -94,7 +94,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -114,7 +114,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -134,7 +134,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 
@@ -142,28 +142,13 @@ namespace KSP_AVC
 
         #region Methods: private
 
-        private Texture2D GetTexture(string file, int width, int height)
-        {
-            try
-            {
-                var texture = new Texture2D(width, height, TextureFormat.ARGB32, false);
-                texture.LoadImage(File.ReadAllBytes(Path.Combine(this.textureDirectory, file)));
-                return texture;
-            }
-            catch (Exception ex)
-            {
-                Logger.Exception(ex);
-                return null;
-            }
-        }
-
         private void InitialiseStyles()
         {
             this.listStyle = new GUIStyle
             {
                 normal =
                 {
-                    background = this.GetTexture("DropDownBackground.png", 35, 25)
+                    background = UI.Image.DropDownBackground
                 },
                 border = new RectOffset(5, 5, 0, 5),
                 padding = new RectOffset(3, 3, 3, 3)
@@ -173,27 +158,27 @@ namespace KSP_AVC
             {
                 normal =
                 {
-                    background = this.GetTexture("DropDownNormal.png", 35, 25),
+                    background = UI.Image.DropDownNormal,
                     textColor = Color.white
                 },
                 hover =
                 {
-                    background = this.GetTexture("DropDownHover.png", 35, 25),
+                    background = UI.Image.DropDownHover,
                     textColor = Color.white
                 },
                 active =
                 {
-                    background = this.GetTexture("DropDownActive.png", 35, 25),
+                    background = UI.Image.DropDownActive,
                     textColor = Color.white
                 },
                 onNormal =
                 {
-                    background = this.GetTexture("DropDownOnNormal.png", 35, 25),
+                    background = UI.Image.DropDownOnNormal,
                     textColor = Color.white
                 },
                 onHover =
                 {
-                    background = this.GetTexture("DropDownOnHover.png", 35, 25),
+                    background = UI.Image.DropDownOnHover,
                     textColor = Color.white
                 },
                 border = new RectOffset(5, 25, 5, 5),
@@ -233,7 +218,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(this,ex);
             }
         }
 

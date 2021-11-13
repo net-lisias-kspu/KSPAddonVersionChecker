@@ -88,7 +88,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(typeof(Configuration),ex);
             }
         }
 
@@ -105,7 +105,7 @@ namespace KSP_AVC
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex);
+                Log.ex(typeof(Configuration),ex);
             }
         }
 
