@@ -10,7 +10,7 @@ namespace KSP_AVC
 		public const int patch = 6;
 		public const int build = 1;
 		public const string Number = "1.1.6.1";
-		public const string Namespace = "KSP-AVC";
+		public const string Namespace = "KSP_AVC";
 		public const string Vendor = "net.lisias.ksp";
 		public const string FriendlyName = "KSP-AVC /L";
 #if DEBUG
